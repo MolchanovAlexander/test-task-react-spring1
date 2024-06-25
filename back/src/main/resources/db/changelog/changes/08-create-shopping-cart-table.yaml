@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-shopping-cart-table
+      author: salat
+      changes:
+        - createTable:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: shopping_carts
+            baseColumnNames: user_id
+            constraintName: fk_shopping_cart_user
+            referencedTableName: users
+            referencedColumnNames: id
+
+  - changeSet:
+      id: insert-shopping-cart-admin
+      author: salat
+
+      changes:
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'admin@admin.com')
+
+  - changeSet:
+      id: insert-shopping-cart-alice
+      author: salat
+
+      changes:
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'alice@alice.com')

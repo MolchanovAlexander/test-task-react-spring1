@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users-roles-table
+      author: salat
+      changes:
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: users_roles
+            baseColumnNames: user_id
+            constraintName: fk_user_id
+            referencedTableName: users
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: users_roles
+            baseColumnNames: role_id
+            constraintName: fk_role_id
+            referencedTableName: roles
+            referencedColumnNames: id
+        - addPrimaryKey:
+            tableName: users_roles
+            columnNames: user_id, role_id
+
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'admin@admin.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE role = 'ADMIN')
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'admin@admin.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE role = 'USER')
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'alice@alice.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE role = 'USER')

@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-author-name-column
+      author: salat
+      changes:
+        - addColumn:
+            tableName: books
+            columns:
+              - column:
+                  name: author_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true

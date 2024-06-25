@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-author-name-column
+      author: salat
+      changes:
+        - sql:
+            sql: "UPDATE books SET author_name = author WHERE author_name IS NULL;"

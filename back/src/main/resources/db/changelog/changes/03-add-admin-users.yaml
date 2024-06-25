@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-admin-users
+      author: salat
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  type: varchar(255)
+                  value: admin@admin.com
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  value: admin
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  value: admin
+              - column:
+                  name: password
+                  type: varchar(255)
+                  value: $2a$10$duEFuKqhT34aILFFxJYP0eGjtsiYBBtCJ48floHAXahw7ju4oaEpO
+              - column:
+                  name: shipping_address
+                  type: varchar(255)
+                  value: NO address
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  value: 0
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  type: varchar(255)
+                  value: alice@alice.com
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  value: alice
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  value: Buchenwald
+              - column:
+                  name: password
+                  type: varchar(255)
+                  value: $2a$10$duEFuKqhT34aILFFxJYP0eGjtsiYBBtCJ48floHAXahw7ju4oaEpO
+              - column:
+                  name: shipping_address
+                  type: varchar(255)
+                  value: yes address
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  value: 0

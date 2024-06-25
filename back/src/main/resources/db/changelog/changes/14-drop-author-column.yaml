@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: drop-author-column
+      author: salat
+      changes:
+        - dropColumn:
+            columnName: author
+            tableName: books

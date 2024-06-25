@@ -1,0 +1,10 @@
+CREATE TABLE roles
+(
+    id   BIGINT AUTO_INCREMENT PRIMARY KEY,
+    role ENUM('USER', 'ADMIN') NOT NULL UNIQUE
+);
+
+INSERT INTO roles (role)
+VALUES ('USER');
+INSERT INTO roles (role)
+VALUES ('ADMIN');
